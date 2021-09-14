@@ -1,5 +1,5 @@
 name: Download and Add Sonar JSON
-on: [release, commit]
+on: [release, push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
