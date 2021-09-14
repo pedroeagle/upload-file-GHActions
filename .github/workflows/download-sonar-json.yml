@@ -1,0 +1,7 @@
+name: Download and Add Sonar JSON
+on: [release]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl {{github.url}} > file.json
