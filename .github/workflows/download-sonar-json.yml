@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Commit files # commit the output folder
         run: |
-          curl https://sonarcloud.io/api/measures/component_tree\?component\=fga-eps-mds_2021.1-Multilind-Mobile-App\&metricKeys\=files,functions,complexity,comment_lines_density,duplicated_lines_density,security_rating,tests,test_success_density,test_execution_time,reliability_rating,coverage,ncloc\&ps\=500 > file.json
+          curl ${{env.secrets.url}} > file.json
           git config --local user.email "pedroigor.silva@outlook.com"
           git config --local user.name "Pedro Igor"
           git add .
