@@ -5,3 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: curl https://sonarcloud.io/api/measures/component_tree\?component\=fga-eps-mds_2021.1-Multilind-Mobile-App\&metricKeys\=files,functions,complexity,comment_lines_density,duplicated_lines_density,security_rating,tests,test_success_density,test_execution_time,reliability_rating,coverage,ncloc\&ps\=500 > file.json
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Commit files # commit the output folder
+        run: |
+          git config --local user.email "pedroigor.silva@outlook.com"
+          git config --local user.name "Pedro Igor"
+          git add .
+          git commit -m "Add file.json"
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          branch: B77 #ignore if your branch is master
+          github_token: ${{ secrets.GH_TOKEN }}
+          force: true
