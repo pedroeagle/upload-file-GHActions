@@ -1,18 +1,20 @@
 name: Download and Add Sonar JSON
 on: [release, push]
 jobs:
-  Explore-GitHub-Actions:
+  Download-And-Upload-File:
     runs-on: ubuntu-latest
+    env:
+      url: ${{secrets.url}}
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: Commit files # commit the output folder
         run: |
-          curl ${{env.secrets.url}} > file.json
+          curl ${{env.url}} > fga-eps-mds-2021_1-MULTILIND-$(date '+%Y-%m-%d-%H:%M').json
           git config --local user.email "pedroigor.silva@outlook.com"
           git config --local user.name "Pedro Igor"
           git add .
-          git commit -m "Add file.json"
+          git commit -m "Update sonar report"
       - name: Push changes # push the output folder to your repo
         uses: ad-m/github-push-action@master
         with:
